@@ -14,17 +14,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return _buildApp(config.appTitle! , config.imageLocation!);
+    return _buildApp(config);
   }
 
-  Widget _buildApp(String appName , String imageLocation){
+  Widget _buildApp(FlavorConfig config){
     return MaterialApp(
-      title: appName,
-      theme: ThemeData(
-        primaryColor: Color(0xFF43a047),
-        accentColor: Color(0xFFffcc00),
-        primaryColorBrightness: Brightness.light,
-      ),
+      title: config.appTitle!,
+      theme: config.theme,
       home:Scaffold(
         body: Center(
           child: Column(
@@ -41,7 +37,7 @@ class MyApp extends StatelessWidget {
                 color: Colors.grey,
                 child: Center(
                   child: Text(
-                    appName,
+                    config.appTitle!,
                     key: const ValueKey<String>('summary'),
                   ),
                 ),
@@ -49,7 +45,7 @@ class MyApp extends StatelessWidget {
               Container(
                   width: 200.0,
                   height: 200.0,
-                  child: Image.asset(imageLocation , width: 200.0 , height: 200.0,)
+                  child: Image.asset(config.imageLocation! , width: 200.0 , height: 200.0,)
               )
 
             ],
